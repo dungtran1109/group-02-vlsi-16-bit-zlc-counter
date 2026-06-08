@@ -1,0 +1,40 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: extract <circuit>"
+    echo "where <circuit> is a xschem schematic file name without extension (<circuit>.sch)"
+    exit 0
+}
+
+if [ -z "$1" ]; then
+    usage
+fi
+
+if [[ "$1" == *.sch ]]; then
+    usage
+else
+    C=$1.sch
+    SN=$1.spice
+    VN=$1.v
+fi
+
+OPT="--no_x --quit --netlist --netlist_path ."
+
+# --rcfile $PDK_ROOT/$PDK/libs.tech/xschem/xschemrc
+
+echo Extracting verilog netlist $VN from $C ...
+xschem --verilog $OPT --tcl "set lvs_netlist 1; set lvs_ignore 1;" $C
+if [ ! -f $VN ]; then
+  echo Error: Extracting verilog netlist $VN failed!
+  exit 1
+fi
+
+echo Extracting spice netlist $SN from $C ...
+xschem --spice $OPT --tcl "set lvs_netlist 1; set lvs_ignore 1;" $C
+if [ ! -f $SN ]; then
+  echo Error: Extracting spice netlist $SN failed!
+  exit 1
+fi
+
+echo $VN and $SN created successfully!
+

@@ -1,0 +1,6 @@
+** sch_path: /home/me/Project/sky130_lzc16/xschem/lzc2.sch
+.subckt lzc2 HI V LO P
+*.PININFO HI:I LO:I V:O P:O
+x1 HI LO VGND VNB VPB VPWR V sky130_fd_sc_hd__or2_1
+x2 HI GND GND VDD VDD P sky130_fd_sc_hd__inv_1
+.ends

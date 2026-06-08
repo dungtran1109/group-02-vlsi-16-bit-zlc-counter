@@ -1,0 +1,54 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: run <testbench>"
+    echo "where <testbench> is a verilog testbench without extension (<testbench>.v)"
+    exit 0
+}
+
+if [ -z "$1" ]; then
+    usage
+fi
+
+if [[ "$1" == *.v ]]; then
+    usage
+else
+    TB=$1.v
+    VVP=$1.vvp
+fi
+
+if [ -z "$2" ]; then
+    STDCELL=sky130_fd_sc_hd
+else
+    STDCELL=$2
+fi
+
+LOG=iverilog.log
+
+echo Simulating $TB with standard cells $STDCELL from $PDK pdk ...
+iverilog -o $VVP -g2012 \
+    -y ../xschem/ \
+    $PDK_ROOT/$PDK/libs.ref/$STDCELL/verilog/primitives.v \
+    $PDK_ROOT/$PDK/libs.ref/$STDCELL/verilog/$STDCELL.v \
+    $TB > $LOG 2>&1
+
+if [ ! -f $VVP ]; then
+  echo Error: Simulating failed! Check $LOG for more info.
+  exit 1
+fi
+
+vvp $VVP >> $LOG 2>&1
+VCD=$(awk '/^VCD info: dumpfile/{print $4}' $LOG)
+rm $VVP
+
+if [ -z "$VCD" ]; then
+    echo Error: Simulating failed! Check $LOG for more info.
+    exit 1
+fi
+
+if [ ! -f $VCD ]; then
+  echo Error: Simulating failed! Check $LOG for more info.
+  exit 1
+fi
+
+echo "Simulating successfully. To view the waveform, run: gtkwave $VCD &"

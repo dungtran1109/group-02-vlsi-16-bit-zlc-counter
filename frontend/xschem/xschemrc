@@ -1,0 +1,9 @@
+source $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/xschemrc
+
+append XSCHEM_LIBRARY_PATH :$env(PWD)
+set netlist_dir $env(PWD)
+set editor {mousepad}
+
+if {[info exists XSCHEM_START_WINDOW]} {
+  unset XSCHEM_START_WINDOW
+}

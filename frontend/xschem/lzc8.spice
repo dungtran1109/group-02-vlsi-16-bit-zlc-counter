@@ -1,0 +1,33 @@
+** sch_path: /home/me/Project/sky130_lzc16/xschem/lzc8.sch
+.subckt lzc8 A7 A6 V A5 A4 P2 A3 A2 P1 A1 A0 P0
+*.PININFO A7:I A6:I A5:I A4:I A3:I A2:I A1:I A0:I V:O P2:O P1:O P0:O
+x1 A7 net1 A6 net2 A5 A4 net5 lzc4
+x2 A3 net3 A2 net4 A1 A0 net6 lzc4
+x3 net1 net3 VGND VNB VPB VPWR V sky130_fd_sc_hd__or2_1
+x4 net1 VGND VNB VPB VPWR P2 sky130_fd_sc_hd__inv_1
+x5 net2 net4 P2 VGND VNB VPB VPWR P1 sky130_fd_sc_hd__mux2_1
+x6 net5 net6 P2 VGND VNB VPB VPWR P0 sky130_fd_sc_hd__mux2_1
+.ends
+
+* expanding   symbol:  lzc4.sym # of pins=7
+** sym_path: /home/me/Project/sky130_lzc16/xschem/lzc4.sym
+** sch_path: /home/me/Project/sky130_lzc16/xschem/lzc4.sch
+.subckt lzc4 A3 V A2 P1 A1 A0 P0
+*.PININFO A3:I A2:I A1:I A0:I V:O P1:O P0:O
+x1 A3 net1 A2 net3 lzc2
+x2 A1 net2 A0 net4 lzc2
+x3 net1 net2 VGND VNB VPB VPWR V sky130_fd_sc_hd__or2_1
+x4 net1 VGND VNB VPB VPWR P1 sky130_fd_sc_hd__inv_1
+x5 net3 net4 P1 VGND VNB VPB VPWR P0 sky130_fd_sc_hd__mux2_1
+.ends
+
+
+* expanding   symbol:  lzc2.sym # of pins=4
+** sym_path: /home/me/Project/sky130_lzc16/xschem/lzc2.sym
+** sch_path: /home/me/Project/sky130_lzc16/xschem/lzc2.sch
+.subckt lzc2 HI V LO P
+*.PININFO HI:I LO:I V:O P:O
+x1 HI LO VGND VNB VPB VPWR V sky130_fd_sc_hd__or2_1
+x2 HI GND GND VDD VDD P sky130_fd_sc_hd__inv_1
+.ends
+

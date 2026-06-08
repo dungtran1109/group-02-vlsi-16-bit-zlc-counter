@@ -1,0 +1,94 @@
+ time 1ns
+ capacitance 1pF
+ resistance 1kohm
+ voltage 1v
+ current 1mA
+ power 1nW
+ distance 1um
+Startpoint: A3 (input port clocked by clk)
+Endpoint: Y0 (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00 v input external delay
+     2    0.00    0.01    0.01    0.01 v A3 (in)
+                  0.01    0.00    0.01 v x2/x2/x1/x1/A (sky130_fd_sc_hd__or2_1)
+     2    0.00    0.05    0.21    0.22 v x2/x2/x1/x1/X (sky130_fd_sc_hd__or2_1)
+                  0.05    0.00    0.22 v x2/x2/x4/A (sky130_fd_sc_hd__inv_1)
+     2    0.01    0.06    0.07    0.29 ^ x2/x2/x4/Y (sky130_fd_sc_hd__inv_1)
+                  0.06    0.00    0.29 ^ x2/x2/x5/S (sky130_fd_sc_hd__mux2_1)
+     1    0.00    0.05    0.30    0.59 v x2/x2/x5/X (sky130_fd_sc_hd__mux2_1)
+                  0.05    0.00    0.59 v x2/x6/A1 (sky130_fd_sc_hd__mux2_1)
+     1    0.00    0.05    0.28    0.87 v x2/x6/X (sky130_fd_sc_hd__mux2_1)
+                  0.05    0.00    0.87 v x5/A1 (sky130_fd_sc_hd__mux2_1)
+     1    0.00    0.05    0.28    1.15 v x5/X (sky130_fd_sc_hd__mux2_1)
+                  0.05    0.00    1.15 v x11/A (sky130_fd_sc_hd__and2_1)
+     1    0.01    0.07    0.17    1.31 v x11/X (sky130_fd_sc_hd__and2_1)
+                  0.07    0.00    1.31 v Y0 (out)
+                                  1.31   data arrival time
+
+                  0.00 1000.00 1000.00   clock clk (rise edge)
+                          0.00 1000.00   clock network delay (ideal)
+                          0.00 1000.00   clock reconvergence pessimism
+                         -0.20  999.80   output external delay
+                                999.80   data required time
+-----------------------------------------------------------------------------
+                                999.80   data required time
+                                 -1.31   data arrival time
+-----------------------------------------------------------------------------
+                                998.49   slack (MET)
+
+
+Startpoint: A0 (input port clocked by clk)
+Endpoint: Y4 (output port clocked by clk)
+Path Group: clk
+Path Type: min
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00 ^ input external delay
+     1    0.00    0.01    0.01    0.01 ^ A0 (in)
+                  0.01    0.00    0.01 ^ x2/x2/x2/x1/B (sky130_fd_sc_hd__or2_1)
+     1    0.00    0.03    0.07    0.07 ^ x2/x2/x2/x1/X (sky130_fd_sc_hd__or2_1)
+                  0.03    0.00    0.07 ^ x2/x2/x3/B (sky130_fd_sc_hd__or2_1)
+     1    0.00    0.03    0.07    0.15 ^ x2/x2/x3/X (sky130_fd_sc_hd__or2_1)
+                  0.03    0.00    0.15 ^ x2/x3/B (sky130_fd_sc_hd__or2_1)
+     1    0.00    0.03    0.07    0.22 ^ x2/x3/X (sky130_fd_sc_hd__or2_1)
+                  0.03    0.00    0.22 ^ x3/B (sky130_fd_sc_hd__or2_1)
+     5    0.01    0.09    0.12    0.34 ^ x3/X (sky130_fd_sc_hd__or2_1)
+                  0.09    0.00    0.34 ^ x12/A (sky130_fd_sc_hd__inv_1)
+     1    0.01    0.06    0.08    0.42 v x12/Y (sky130_fd_sc_hd__inv_1)
+                  0.06    0.00    0.42 v Y4 (out)
+                                  0.42   data arrival time
+
+                  0.00    0.00    0.00   clock clk (rise edge)
+                          0.00    0.00   clock network delay (ideal)
+                          0.00    0.00   clock reconvergence pessimism
+                          0.02    0.02   output external delay
+                                  0.02   data required time
+-----------------------------------------------------------------------------
+                                  0.02   data required time
+                                 -0.42   data arrival time
+-----------------------------------------------------------------------------
+                                  0.40   slack (MET)
+
+
+wns max 0.00
+tns max 0.00
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Combinational          3.52e-08   2.19e-08   1.95e-10   5.73e-08 100.0%
+Clock                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  3.52e-08   2.19e-08   1.95e-10   5.73e-08 100.0%
+                          61.5%      38.2%       0.3%

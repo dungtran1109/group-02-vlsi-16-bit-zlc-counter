@@ -1,0 +1,30 @@
+module lzc16 (input [15:0] A, output [4:0] Y);
+    wire [7:0] v0, p0;
+    genvar k;
+    generate for (k = 0; k < 8; k = k + 1) begin : L0
+        assign v0[k] = A[2*k+1] | A[2*k];
+        assign p0[k] = ~A[2*k+1];
+    end endgenerate
+
+    wire [3:0] v1;
+    wire [1:0] P1_3, P1_2, P1_1, P1_0;
+    wire s1_3 = ~v0[7], s1_2 = ~v0[5], s1_1 = ~v0[3], s1_0 = ~v0[1];
+    assign v1[3] = v0[7] | v0[6];  assign P1_3 = {s1_3, s1_3 ? p0[6] : p0[7]};
+    assign v1[2] = v0[5] | v0[4];  assign P1_2 = {s1_2, s1_2 ? p0[4] : p0[5]};
+    assign v1[1] = v0[3] | v0[2];  assign P1_1 = {s1_1, s1_1 ? p0[2] : p0[3]};
+    assign v1[0] = v0[1] | v0[0];  assign P1_0 = {s1_0, s1_0 ? p0[0] : p0[1]};
+
+    wire [1:0] v2;
+    wire [2:0] P2_1, P2_0;
+    wire s2_1 = ~v1[3], s2_0 = ~v1[1];
+    assign v2[1] = v1[3] | v1[2];  assign P2_1 = {s2_1, s2_1 ? P1_2 : P1_3};
+    assign v2[0] = v1[1] | v1[0];  assign P2_0 = {s2_0, s2_0 ? P1_0 : P1_1};
+
+    wire       v3;
+    wire [3:0] P3;
+    wire s3 = ~v2[1];
+    assign v3 = v2[1] | v2[0];     assign P3 = {s3, s3 ? P2_0 : P2_1};
+
+    assign Y[4]   = ~v3;
+    assign Y[3:0] = P3 & {4{v3}};
+endmodule
