@@ -570,7 +570,9 @@ drc check     # run DRC
 drc count     # verify: Total DRC errors found: 0
 ```
 
----
+---source place2.tcl
+save lzc16
+view
 
 ### Step 6 — Re-run Placement from Scratch (if needed)
 
