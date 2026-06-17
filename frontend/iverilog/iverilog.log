@@ -628,8 +628,4 @@
 /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v:145725: warning: timing checks are not supported and delayed signal "SCE_delayed" will not be driven.
 /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v:145726: warning: timing checks are not supported and delayed signal "CLK_delayed" will not be driven.
 /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v:145726: warning: timing checks are not supported and delayed signal "SCE_delayed" will not be driven.
-lzc16_tb.v:14: error: Unknown module type: zlc_ref
-444 error(s) during elaboration.
-*** These modules were missing:
-        zlc_ref referenced 1 times.
-***
+lzc4.v: No such file or directory

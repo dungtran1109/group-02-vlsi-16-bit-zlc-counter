@@ -49,36 +49,30 @@ N 420 -280 420 280 {lab=#net12}
 N -50 -70 20 -70 {lab=#net13}
 N 20 -260 20 -70 {lab=#net13}
 N 20 -260 170 -260 {lab=#net13}
-C {lzc8.sym} -200 -230 0 0 {name=x1}
-C {lzc8.sym} -200 0 0 0 {name=x2}
-C {sky130_stdcells/or2_1.sym} 230 -280 0 0 {name=x3 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/inv_1.sym} 230 -170 0 0 {name=x4 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/mux2_1.sym} 240 240 0 0 {name=x5 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/mux2_1.sym} 240 90 0 0 {name=x6 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/mux2_1.sym} 230 -50 0 0 {name=x7 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/and2_1.sym} 540 -150 0 0 {name=x8 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/and2_1.sym} 550 -30 0 0 {name=x9 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/and2_1.sym} 560 110 0 0 {name=x10 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/and2_1.sym} 550 260 0 0 {name=x11 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/inv_1.sym} 530 -280 0 0 {name=x12 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {ipin.sym} -350 -300 0 0 {name=p1 lab=A15}
-C {ipin.sym} -350 -280 0 0 {name=p2 lab=A14}
-C {ipin.sym} -350 -260 0 0 {name=p3 lab=A13}
-C {ipin.sym} -350 -240 0 0 {name=p4 lab=A12}
-C {ipin.sym} -350 -220 0 0 {name=p5 lab=A11}
-C {ipin.sym} -350 -200 0 0 {name=p6 lab=A10}
-C {ipin.sym} -350 -180 0 0 {name=p7 lab=A9}
-C {ipin.sym} -350 -160 0 0 {name=p8 lab=A8}
-C {ipin.sym} -350 -70 0 0 {name=p9 lab=A7}
-C {ipin.sym} -350 -50 0 0 {name=p10 lab=A6}
-C {ipin.sym} -350 -30 0 0 {name=p11 lab=A5}
-C {ipin.sym} -350 -10 0 0 {name=p12 lab=A4}
-C {ipin.sym} -350 10 0 0 {name=p13 lab=A3}
-C {ipin.sym} -350 30 0 0 {name=p14 lab=A2}
-C {ipin.sym} -350 50 0 0 {name=p15 lab=A1}
-C {ipin.sym} -350 70 0 0 {name=p16 lab=A0}
-C {opin.sym} 570 -280 0 0 {name=p17 lab=Y4}
-C {opin.sym} 600 -150 0 0 {name=p18 lab=Y3}
-C {opin.sym} 610 -30 0 0 {name=p19 lab=Y2}
-C {opin.sym} 620 110 0 0 {name=p20 lab=Y1}
-C {opin.sym} 610 260 0 0 {name=p21 lab=Y0}
+C {lzc8.sym} -200 -270 0 0 {name=x1}
+C {lzc8.sym} -200 -40 0 0 {name=x2}
+C {sky130_stdcells/or2_1.sym} 230 -280 0 0 {name=x3 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/inv_1.sym} 230 -170 0 0 {name=x4 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/mux2_1.sym} 240 240 0 0 {name=x5 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/mux2_1.sym} 240 90 0 0 {name=x6 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/mux2_1.sym} 230 -50 0 0 {name=x7 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/and2_1.sym} 540 -150 0 0 {name=x8 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/and2_1.sym} 550 -30 0 0 {name=x9 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/and2_1.sym} 560 110 0 0 {name=x10 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/and2_1.sym} 550 260 0 0 {name=x11 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/inv_1.sym} 530 -280 0 0 {name=x12 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {lab_pin.sym} -350 -300 0 0 {name=p22 sig_type=std_logic lab=A[15:8]}
+C {lab_pin.sym} -350 -280 0 0 {name=p23 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} -350 -260 0 0 {name=p24 sig_type=std_logic lab=GND}
+C {lab_pin.sym} -350 -70 0 0 {name=p25 sig_type=std_logic lab=A[7:0]}
+C {lab_pin.sym} -350 -50 0 0 {name=p26 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} -350 -30 0 0 {name=p27 sig_type=std_logic lab=GND}
+C {lab_pin.sym} 570 -280 2 0 {name=p1 sig_type=std_logic lab=Y[4]}
+C {lab_pin.sym} 600 -150 2 0 {name=p2 sig_type=std_logic lab=Y[3]}
+C {lab_pin.sym} 610 -30 2 0 {name=p3 sig_type=std_logic lab=Y[2]}
+C {lab_pin.sym} 620 110 2 0 {name=p4 sig_type=std_logic lab=Y[1]}
+C {lab_pin.sym} 610 260 2 0 {name=p5 sig_type=std_logic lab=Y[0]}
+C {ipin.sym} -550 -140 0 0 {name=p6 lab=A[15:0]}
+C {ipin.sym} -550 -110 0 0 {name=p7 lab=VDD}
+C {ipin.sym} -550 -90 0 0 {name=p8 lab=GND}
+C {opin.sym} -600 -50 0 0 {name=p9 lab=Y[4:0]}

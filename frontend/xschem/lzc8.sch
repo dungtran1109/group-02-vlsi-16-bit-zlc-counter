@@ -30,23 +30,23 @@ N 280 -220 280 80 {lab=P2}
 N 130 -70 280 -70 {lab=P2}
 N 240 -290 340 -290 {lab=V}
 N 210 -130 350 -130 {lab=P1}
-N 130 -20 350 -20 {lab=xxx}
-C {lzc4.sym} -180 -280 0 0 {name=x1}
-C {lzc4.sym} -170 -140 0 0 {name=x2}
-C {sky130_stdcells/or2_1.sym} 180 -290 0 0 {name=x3 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/inv_1.sym} 160 -220 0 0 {name=x4 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/mux2_1.sym} 170 -130 0 0 {name=x5 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/mux2_1.sym} 90 -20 0 0 {name=x6 VGND=VGND VNB=VNB VPB=VPB VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {ipin.sym} -330 -310 0 0 {name=p1 lab=A7}
-C {ipin.sym} -330 -290 0 0 {name=p2 lab=A6}
-C {ipin.sym} -330 -270 0 0 {name=p3 lab=A5}
-C {ipin.sym} -330 -250 0 0 {name=p4 lab=A4
-}
-C {ipin.sym} -320 -170 0 0 {name=p5 lab=A3}
-C {ipin.sym} -320 -150 0 0 {name=p6 lab=A2}
-C {ipin.sym} -320 -130 0 0 {name=p7 lab=A1}
-C {ipin.sym} -320 -110 0 0 {name=p8 lab=A0}
+N 130 -20 350 -20 {lab=P0}
+C {lzc4.sym} -180 -290 0 0 {name=x1}
+C {lzc4.sym} -170 -150 0 0 {name=x2}
+C {sky130_stdcells/or2_1.sym} 180 -290 0 0 {name=x3 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/inv_1.sym} 160 -220 0 0 {name=x4 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/mux2_1.sym} 170 -130 0 0 {name=x5 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/mux2_1.sym} 90 -20 0 0 {name=x6 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_hd__ }
 C {opin.sym} 340 -290 0 0 {name=p9 lab=V}
 C {opin.sym} 320 -220 0 0 {name=p10 lab=P2}
 C {opin.sym} 350 -130 0 0 {name=p11 lab=P1}
 C {opin.sym} 350 -20 0 0 {name=p12 lab=P0}
+C {ipin.sym} -540 -220 0 0 {name=p13 lab=VDD}
+C {ipin.sym} -540 -180 0 0 {name=p14 lab=GND}
+C {lab_pin.sym} -330 -310 0 0 {name=p15 sig_type=std_logic lab=A[7:4]}
+C {lab_pin.sym} -330 -290 0 0 {name=p16 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} -330 -270 0 0 {name=p17 sig_type=std_logic lab=GND}
+C {lab_pin.sym} -320 -170 0 0 {name=p18 sig_type=std_logic lab=A[3:0]}
+C {lab_pin.sym} -320 -150 0 0 {name=p19 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} -320 -130 0 0 {name=p20 sig_type=std_logic lab=GND}
+C {ipin.sym} -530 -290 0 0 {name=p1 lab=A[7:0]}

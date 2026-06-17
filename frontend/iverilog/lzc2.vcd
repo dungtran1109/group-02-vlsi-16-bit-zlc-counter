@@ -1,0 +1,70 @@
+$date
+	Wed Jun 17 11:36:18 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_zlc2 $end
+$var wire 1 ! V $end
+$var wire 1 " P $end
+$var reg 1 # HI $end
+$var reg 1 $ LO $end
+$scope module uut $end
+$var wire 1 # HI $end
+$var wire 1 $ LO $end
+$var wire 1 ! V $end
+$var wire 1 " P $end
+$scope module x1 $end
+$var wire 1 # A $end
+$var wire 1 $ B $end
+$var wire 1 % VGND $end
+$var wire 1 & VNB $end
+$var wire 1 ' VPB $end
+$var wire 1 ( VPWR $end
+$var wire 1 ! X $end
+$var wire 1 ) or0_out_X $end
+$upscope $end
+$scope module x2 $end
+$var wire 1 # A $end
+$var wire 1 * VGND $end
+$var wire 1 + VNB $end
+$var wire 1 , VPB $end
+$var wire 1 - VPWR $end
+$var wire 1 " Y $end
+$var wire 1 . not0_out_Y $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1.
+1-
+1,
+0+
+0*
+0)
+1(
+1'
+0&
+0%
+0$
+0#
+1"
+0!
+$end
+#10000
+1!
+1)
+1$
+#20000
+0"
+0.
+0$
+1#
+#30000
+1$
+#40000

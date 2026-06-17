@@ -1,13 +1,12 @@
-// sch_path: /home/me/Project/sky130_lzc16/xschem/lzc4.sch
+// sch_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc4.sch
 module lzc4
 (
   output wire V,
   output wire P1,
   output wire P0,
-  input wire A3,
-  input wire A2,
-  input wire A1,
-  input wire A0
+  input wire [3:0] A,
+  input wire VDD,
+  input wire GND
 );
 wire net1 ;
 wire net2 ;
@@ -16,19 +15,23 @@ wire net4 ;
 
 lzc2
 x1 ( 
- .HI( A3 ),
+ .HI( A[3] ),
  .V( net1 ),
- .LO( A2 ),
- .P( net3 )
+ .LO( A[2] ),
+ .VDD( VDD ),
+ .P( net3 ),
+ .GND( GND )
 );
 
 
 lzc2
 x2 ( 
- .HI( A1 ),
+ .HI( A[1] ),
  .V( net2 ),
- .LO( A0 ),
- .P( net4 )
+ .LO( A[0] ),
+ .VDD( VDD ),
+ .P( net4 ),
+ .GND( GND )
 );
 
 
@@ -57,15 +60,17 @@ x5 (
 
 endmodule
 
-// expanding   symbol:  lzc2.sym # of pins=4
-// sym_path: /home/me/Project/sky130_lzc16/xschem/lzc2.sym
-// sch_path: /home/me/Project/sky130_lzc16/xschem/lzc2.sch
+// expanding   symbol:  lzc2.sym # of pins=6
+// sym_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc2.sym
+// sch_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc2.sch
 module lzc2
 (
   input wire HI,
   output wire V,
   input wire LO,
-  output wire P
+  input wire VDD,
+  output wire P,
+  input wire GND
 );
 
 sky130_fd_sc_hd__or2_1
