@@ -478,7 +478,9 @@ frontend/
 │   └── lvs_result.png          # Netgen LVS result
 │
 ├── README.md                   ← This file
-└── README_handoff.md           ← Backend engineer handoff guide
+├── README_handoff.md           ← Backend engineer handoff guide
+│
+└── sky130_adder_4bit/          ← Reference design (git submodule)
 ```
 
 ---
@@ -495,8 +497,11 @@ PDK location: `/usr/local/share/pdk/sky130A/`
 ### Step 1 — Clone the Repository
 
 ```bash
-git clone https://github.com/dungtran1109/group-02-vlsi-16-bit-zlc-counter.git
+git clone --recursive https://github.com/dungtran1109/group-02-vlsi-16-bit-zlc-counter.git
 cd group-02-vlsi-16-bit-zlc-counter/frontend
+
+# If you already cloned without --recursive:
+# git submodule update --init --recursive
 ```
 
 ---
