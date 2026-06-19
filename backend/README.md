@@ -25,7 +25,8 @@ lzc16.spice lzc16.rcx.spice created successfully!
 ### 2. Layout vs schematic (LVS)
 Change the working directory to netgen and perform the LVS on the 16 bit leading zero counter circuit:
 ```bash
-$cd ../netgen$ ./lvs lzc16
+$cd ../netgen$
+$ ./lvs lzc16
 ...
 -----------------------------------------
 Finish comparing spice netlist of lzc16 between:
