@@ -530,7 +530,7 @@ cd iverilog/
 
 # Compile with sky130 cell models
 iverilog -g2012 -o lzc16_sim \
-    lzc16.v lzc16_tb.v zlc_ref.v \
+    lzc16.v tb_lzc16.v zlc_ref.v \
     /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v \
     /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v
 
