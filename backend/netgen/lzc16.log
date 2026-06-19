@@ -256,8 +256,8 @@ Final result: Circuits match uniquely.
 .
 -----------------------------------------
 Finish comparing spice netlist of lzc16 between:
-Circuit 1: /media/sf_VLSI/group-02-vlsi-16-bit-zlc-counter-main/frontend/xschem/lzc16.spice (last modified: 2026-06-18 21:20:56)
-Circuit 2: /media/sf_VLSI/group-02-vlsi-16-bit-zlc-counter-main/frontend/magic/lzc16.spice (last modified: 2026-06-19 14:19:01)
+Circuit 1: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc16.spice (last modified: 2026-06-20 00:41:57)
+Circuit 2: /home/me/group-02-vlsi-16-bit-zlc-counter/backend/magic/lzc16.spice (last modified: 2026-06-20 00:43:47)
 Final result: Circuits match uniquely!
 Report file: lzc16.log
 -----------------------------------------

@@ -1,6 +1,10 @@
 ** sch_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc16.sch
-.subckt lzc16 A15 Y4 A14 A13 A12 A11 A10 A9 A8 Y3 A7 A6 A5 Y2 A4 A3 A2 A1 A0 Y1 Y0
-*.PININFO A[15:0]:I VDD:I GND:I Y[4:0]:O
+**.subckt lzc16 A[15],A[14],A[13],A[12],A[11],A[10],A[9],A[8],A[7],A[6],A[5],A[4],A[3],A[2],A[1],A[0] VDD GND
+*+ Y[4],Y[3],Y[2],Y[1],Y[0]
+*.ipin A[15],A[14],A[13],A[12],A[11],A[10],A[9],A[8],A[7],A[6],A[5],A[4],A[3],A[2],A[1],A[0]
+*.ipin VDD
+*.ipin GND
+*.opin Y[4],Y[3],Y[2],Y[1],Y[0]
 x1 A[15] A[14] A[13] A[12] A[11] A[10] A[9] A[8] net1 net2 VDD GND net4 net6 lzc8
 x2 A[7] A[6] A[5] A[4] A[3] A[2] A[1] A[0] net13 net3 VDD GND net5 net7 lzc8
 x3 net1 net13 GND GND VDD VDD net12 sky130_fd_sc_hd__or2_1
@@ -13,13 +17,19 @@ x9 net9 net12 GND GND VDD VDD Y[2] sky130_fd_sc_hd__and2_1
 x10 net10 net12 GND GND VDD VDD Y[1] sky130_fd_sc_hd__and2_1
 x11 net11 net12 GND GND VDD VDD Y[0] sky130_fd_sc_hd__and2_1
 x12 net12 GND GND VDD VDD Y[4] sky130_fd_sc_hd__inv_1
-.ends
+**.ends
 
 * expanding   symbol:  lzc8.sym # of pins=7
 ** sym_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc8.sym
 ** sch_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc8.sch
 .subckt lzc8 A[7] A[6] A[5] A[4] A[3] A[2] A[1] A[0] V P2 VDD GND P1 P0
-*.PININFO V:O P2:O P1:O P0:O VDD:I GND:I A[7:0]:I
+*.opin V
+*.opin P2
+*.opin P1
+*.opin P0
+*.ipin VDD
+*.ipin GND
+*.ipin A[7],A[6],A[5],A[4],A[3],A[2],A[1],A[0]
 x1 A[7] A[6] A[5] A[4] net1 VDD net2 GND net5 lzc4
 x2 A[3] A[2] A[1] A[0] net3 VDD net4 GND net6 lzc4
 x3 net1 net3 GND GND VDD VDD V sky130_fd_sc_hd__or2_1
@@ -33,7 +43,12 @@ x6 net5 net6 P2 GND GND VDD VDD P0 sky130_fd_sc_hd__mux2_1
 ** sym_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc4.sym
 ** sch_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc4.sch
 .subckt lzc4 A[3] A[2] A[1] A[0] V VDD P1 GND P0
-*.PININFO A[3:0]:I V:O P1:O P0:O VDD:I GND:I
+*.ipin A[3],A[2],A[1],A[0]
+*.opin V
+*.opin P1
+*.opin P0
+*.ipin VDD
+*.ipin GND
 x1 A[3] net1 A[2] VDD net3 GND lzc2
 x2 A[1] net2 A[0] VDD net4 GND lzc2
 x3 net1 net2 GND GND VDD VDD V sky130_fd_sc_hd__or2_1
@@ -46,8 +61,14 @@ x5 net3 net4 P1 GND GND VDD VDD P0 sky130_fd_sc_hd__mux2_1
 ** sym_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc2.sym
 ** sch_path: /home/me/group-02-vlsi-16-bit-zlc-counter/frontend/xschem/lzc2.sch
 .subckt lzc2 HI V LO VDD P GND
-*.PININFO HI:I LO:I V:O P:O VDD:I GND:I
+*.ipin HI
+*.ipin LO
+*.opin V
+*.opin P
+*.ipin VDD
+*.ipin GND
 x1 HI LO GND GND VDD VDD V sky130_fd_sc_hd__or2_1
 x2 HI GND GND VDD VDD P sky130_fd_sc_hd__inv_1
 .ends
 
+.end

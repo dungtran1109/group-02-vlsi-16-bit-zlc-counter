@@ -4,7 +4,7 @@ if [ -z "$1" ]; then
 fi
 
 T=$1
-C1=$(realpath -m "../xschem/$1.spice")
+C1=$(realpath -m "../../frontend/xschem/$1.spice")
 C2=$(realpath -m "../magic/$1.spice")
 C1W=$(realpath -m "./.xschem_wrapper.spice")
 R=$1.log
@@ -22,8 +22,16 @@ fi
 
 rm "$R"
 
+# Xschem exports the top-level subckt commented (**.subckt / **.ends / *+ continuation)
+# and joins bus pins with commas instead of spaces. Inline + un-comment + comma->space
+# fixups so netgen sees a well-formed top-level subcircuit definition.
 echo ".include $PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice" > $C1W
-echo ".include $C1" >> $C1W
+awk '
+  /^\*\*\.subckt/ { sub(/^\*\*/, ""); gsub(/,/, " "); print; next }
+  /^\*\*\.ends/   { sub(/^\*\*/, ""); print; next }
+  /^\*\+/         { sub(/^\*/, "");  gsub(/,/, " "); print; next }
+  { print }
+' "$C1" >> $C1W
 
 netgen -batch lvs "$C1W $T" "$C2 $T" $S $R
 

@@ -193,6 +193,19 @@ cd ../netgen
 # Mong đợi: Final result: Circuits match uniquely!
 ```
 
+Script `lvs` đọc trực tiếp:
+- **Schematic side:** `frontend/xschem/lzc16.spice` (top `**.subckt` / `*+` continuation tự động được un-comment + bus-pin commas → spaces khi build `.xschem_wrapper.spice`).
+- **Layout side:** `backend/magic/lzc16.spice` (sinh từ bước 7).
+
+Đối chiếu mong đợi (4 mức phân cấp):
+
+| Cell  | Devices (sch ↔ lay) | Nets | Kết quả |
+|-------|---------------------|------|---------|
+| lzc2  | 2 ↔ 2               | 6    | match   |
+| lzc4  | 5 ↔ 5               | 13+  | match   |
+| lzc8  | 6 ↔ 6               | 18+  | match   |
+| lzc16 | 12 ↔ 12             | 36   | match   |
+
 Nếu báo mismatch → kiểm tra lại routing/port labels rồi chạy lại bước 7 và 8.
 
 ---
@@ -209,7 +222,15 @@ ngspice -b -r lzc16.rcx.raw lzc16_tb.spice
 gaw lzc16.rcx.raw &
 ```
 
-Kiểm tra `Y[4:0]` đúng giá trị mong đợi cho các vector test trong `lzc16_tb.spice`.
+Testbench `lzc16_tb.spice` kích thích `IN3` (≡ `A[3]`) bằng xung 0→1.8V tại 2 ns, 1.8V→0 tại 12 ns; các bit khác giữ 0. Mong đợi:
+
+| t       | A     | Y (decimal = 16−leading-zeros mapping) | COUNT4 | COUNT3 | COUNT2 | COUNT1 | COUNT0 |
+|---------|-------|----------------------------------------|--------|--------|--------|--------|--------|
+| 1 ns    | 0x0000 | 16 (`10000`) | 1.8 V | 0 | 0 | 0 | 0 |
+| 7 ns    | 0x0008 | 12 (`01100`) | 0     | 1.8 V | 1.8 V | 0 | 0 |
+| 15 ns   | 0x0000 | 16 (`10000`) | 1.8 V | 0 | 0 | 0 | 0 |
+
+(`COUNT0..4` được khai báo trong TB theo thứ tự port của subckt: `Y[0] Y[1] Y[4] Y[3] Y[2]`.)
 
 ---
 
