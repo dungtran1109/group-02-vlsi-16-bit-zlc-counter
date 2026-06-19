@@ -1,0 +1,3 @@
+[submodule "sky130_adder_4bit"]
+	path = sky130_adder_4bit
+	url = https://github.com/dungtran1109/sky130_adder_4bit.git
