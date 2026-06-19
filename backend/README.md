@@ -22,7 +22,7 @@ $ ./netlist lzc16
 ...
 lzc16.spice lzc16.rcx.spice created successfully!
 ```
-### 1. Layout vs schematic (LVS)
+### 2. Layout vs schematic (LVS)
 Change the working directory to netgen and perform the LVS on the 16 bit leading zero counter circuit:
 ```bash
 $cd ../netgen$ ./lvs lzc16
@@ -34,3 +34,16 @@ Circuit 2: group-02-vlsi-16-bit-zlc-counter/backend/magic/lzc16.spice (last modi
 Final result: Circuits match uniquely!
 Report file: lzc16.log
 -----------------------------------------
+```
+## 3. Post-layout Simulation
+Change the working directory to ngspice and run the simulation using these commands:
+```bash
+$ cd ../ngspice
+$ ngspice -b -r lzc16.rcx.raw lzc16_tb.spice
+...
+$ ls
+lzc16.rcx.raw  lzc16_tb.spice
+```
+Open the waveform file with GAW using the following command:
+```bash
+gaw lzc16.rcx.raw &
