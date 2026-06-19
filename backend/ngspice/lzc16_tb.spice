@@ -1,0 +1,68 @@
+* =============================================================
+* Testbench: 16-bit Leading Zero Counter (LZC16)
+* Process : SkyWater SKY130 (sky130_fd_sc_hd)
+* Stimulus : Toggle IN[0] while IN[15:1]=0
+* This forces worst-case propagation through all stages
+* Measure  : propagation delay from IN[0] 50% to COUNT[4] 50%
+* =============================================================
+
+* ---- Include PDK libs ----------------------------------------
+.lib $PDK_ROOT/$PDK/libs.tech/combined/sky130.lib.spice tt
+
+* ---- Include DUT ---------------------------------------------
+.include $PWD/../magic/lzc16.rcx.spice
+
+* ---- Global supply ------------------------------------------
+.global VDD VSS
+Vvdd VDD 0 DC 1.8
+Vvss VSS 0 DC 0
+
+* ---- Stimulus sources ----------------------------------------
+* IN[15:1] = 0 (static)
+V_in1  IN1  0 DC 0
+V_in2  IN2  0 DC 0
+
+V_in4  IN4  0 DC 0
+V_in5  IN5  0 DC 0
+V_in6  IN6  0 DC 0
+V_in7  IN7  0 DC 0
+V_in8  IN8  0 DC 0
+V_in9  IN9  0 DC 0
+V_in10 IN10 0 DC 0
+V_in11 IN11 0 DC 0
+V_in12 IN12 0 DC 0
+V_in13 IN13 0 DC 0
+V_in14 IN14 0 DC 0
+V_in15 IN15 0 DC 0
+
+* IN[0]: step low -> high at t=2ns, then high -> low at t=12ns
+* Sử dụng cấu trúc PWL chuẩn với sườn dốc 50ps giống như mẫu Adder
+Vin3 IN3 0 PWL(
++ 0ns    0
++ 2ns    0
++ 2.05ns 1.8
++ 12ns   1.8
++ 12.05ns 0
++ 20ns   0
++ )
+
+* ---- DUT: LZC16 ---------------------------------------------
+* Thứ tự các chân dưới đây được ánh xạ CHÍNH XÁC 100% theo dòng:
+* .subckt lzc16 VDD GND A[15]...A[0] Y[0] Y[1] Y[4] Y[3] Y[2]
+Xlzc16 VDD GND
++ IN15 IN14 IN13 IN12 IN11 IN10 IN9 IN8 IN7 IN6 IN5
++ IN4 IN3 IN2 IN1 IN0 COUNT0 COUNT1 COUNT4 COUNT3 COUNT2
++ lzc16
+
+* ---- Load capacitance (4fF typical for 1 cell) --------------
+Cload_c0 COUNT0 GND 0.01pF
+Cload_c1 COUNT1 GND 0.01pF
+Cload_c2 COUNT2 GND 0.01pF
+Cload_c3 COUNT3 GND 0.01pF
+Cload_c4 COUNT4 GND 0.01pF
+
+* ---- Batch mode ---------------------------------------------
+.tran 1ps 20ns
+.save v(IN3) v(COUNT0) v(COUNT1) v(COUNT2) v(COUNT3) v(COUNT4)
+
+.end

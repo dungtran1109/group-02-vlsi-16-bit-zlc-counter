@@ -1,0 +1,98 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: extract <circuit>"
+    echo "where <circuit> is a magic layout file name without extension (<circuit>.mag)"
+    exit 0
+}
+
+if [ -z "$1" ]; then
+    usage
+fi
+
+if [[ "$1" == *.mag ]]; then
+    usage
+else
+    C=$1
+    MG=$1.mag
+    SN=$1.spice
+#    PN=$1.pex.spice
+    RCN=$1.rcx.spice
+fi
+
+# -rcfile ${PDK_ROOT}/${PDK}/libs.tech/magic/${PDK}.magicrc
+
+echo Extracting netlist $SN from $MG ...
+magic -dnull -noconsole << EOF
+drc off
+locking disable
+crashbackups stop
+box 0 0 0 0
+load $C
+select top cell
+extract path extfiles
+extract all
+ext2spice lvs
+ext2spice -p extfiles -o $SN
+quit -noprompt
+EOF
+rm -r extfiles
+if [ ! -f $SN ]; then
+  echo Error: Extracting netlist $SN failed!
+  exit 1
+fi
+
+#echo Extracting netlist $PN from $MG ...
+#magic -dnull -noconsole << EOF
+#drc off
+#locking disable
+#crashbackups stop
+#box 0 0 0 0
+#load $1
+#select top cell
+#extract path extfiles
+#extract all
+#ext2spice lvs
+#ext2spice cthresh 0.1
+#ext2spice -p extfiles -o $PN
+#quit -noprompt
+#EOF
+#rm -r extfiles
+#if [ ! -f $PN ]; then
+#  echo Error: Extracting netlist $PN failed!
+#  exit 1
+#fi
+
+
+echo Extracting netlist $RCN from $C ...
+magic -dnull -noconsole << EOF
+drc off
+locking disable
+crashbackups stop
+box 0 0 0 0
+load $C
+select top cell
+flatten myflat
+load myflat
+cellname delete $C
+cellname rename myflat $C
+select top cell
+extract path extfiles
+extract do unique
+extract do resistance
+extresist tolerance 10
+extract all
+ext2spice lvs
+ext2spice cthresh 0.1
+ext2spice extresist on
+ext2spice -p extfiles -o $RCN
+quit -noprompt
+EOF
+rm -r extfiles
+if [ ! -f $RCN ]; then
+  echo Error: Extracting netlist $RCN failed!
+  exit 1
+fi
+
+echo $SN $PN $RCN created successfully!
+exit 0
