@@ -1,3 +1,9 @@
+OpenSTA 3.1.0 1eb2e9b11d Copyright (c) 2026, Parallax Software, Inc.
+License GPLv3: GNU GPL version 3 <http://gnu.org/licenses/gpl.html>
+
+This is free software, and you are free to change and redistribute it
+under certain conditions; type `show_copying' for details. 
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show_warranty'.
  time 1ns
  capacitance 1pF
  resistance 1kohm
@@ -5,8 +11,8 @@
  current 1mA
  power 1nW
  distance 1um
-Startpoint: A3 (input port clocked by clk)
-Endpoint: Y0 (output port clocked by clk)
+Startpoint: A[3] (input port clocked by clk)
+Endpoint: Y[0] (output port clocked by clk)
 Path Group: clk
 Path Type: max
 
@@ -15,7 +21,7 @@ Fanout     Cap    Slew   Delay    Time   Description
                   0.00    0.00    0.00   clock clk (rise edge)
                           0.00    0.00   clock network delay (ideal)
                           0.00    0.00 v input external delay
-     2    0.00    0.01    0.01    0.01 v A3 (in)
+     2    0.00    0.01    0.01    0.01 v A[3] (in)
                   0.01    0.00    0.01 v x2/x2/x1/x1/A (sky130_fd_sc_hd__or2_1)
      2    0.00    0.05    0.21    0.22 v x2/x2/x1/x1/X (sky130_fd_sc_hd__or2_1)
                   0.05    0.00    0.22 v x2/x2/x4/A (sky130_fd_sc_hd__inv_1)
@@ -28,7 +34,7 @@ Fanout     Cap    Slew   Delay    Time   Description
      1    0.00    0.05    0.28    1.15 v x5/X (sky130_fd_sc_hd__mux2_1)
                   0.05    0.00    1.15 v x11/A (sky130_fd_sc_hd__and2_1)
      1    0.01    0.07    0.17    1.31 v x11/X (sky130_fd_sc_hd__and2_1)
-                  0.07    0.00    1.31 v Y0 (out)
+                  0.07    0.00    1.31 v Y[0] (out)
                                   1.31   data arrival time
 
                   0.00   10.00   10.00   clock clk (rise edge)
@@ -43,8 +49,8 @@ Fanout     Cap    Slew   Delay    Time   Description
                                   8.49   slack (MET)
 
 
-Startpoint: A0 (input port clocked by clk)
-Endpoint: Y4 (output port clocked by clk)
+Startpoint: A[0] (input port clocked by clk)
+Endpoint: Y[4] (output port clocked by clk)
 Path Group: clk
 Path Type: min
 
@@ -53,7 +59,7 @@ Fanout     Cap    Slew   Delay    Time   Description
                   0.00    0.00    0.00   clock clk (rise edge)
                           0.00    0.00   clock network delay (ideal)
                           0.00    0.00 ^ input external delay
-     1    0.00    0.01    0.01    0.01 ^ A0 (in)
+     1    0.00    0.01    0.01    0.01 ^ A[0] (in)
                   0.01    0.00    0.01 ^ x2/x2/x2/x1/B (sky130_fd_sc_hd__or2_1)
      1    0.00    0.03    0.07    0.07 ^ x2/x2/x2/x1/X (sky130_fd_sc_hd__or2_1)
                   0.03    0.00    0.07 ^ x2/x2/x3/B (sky130_fd_sc_hd__or2_1)
@@ -64,7 +70,7 @@ Fanout     Cap    Slew   Delay    Time   Description
      5    0.01    0.09    0.12    0.34 ^ x3/X (sky130_fd_sc_hd__or2_1)
                   0.09    0.00    0.34 ^ x12/A (sky130_fd_sc_hd__inv_1)
      1    0.01    0.06    0.08    0.42 v x12/Y (sky130_fd_sc_hd__inv_1)
-                  0.06    0.00    0.42 v Y4 (out)
+                  0.06    0.00    0.42 v Y[4] (out)
                                   0.42   data arrival time
 
                   0.00    0.00    0.00   clock clk (rise edge)

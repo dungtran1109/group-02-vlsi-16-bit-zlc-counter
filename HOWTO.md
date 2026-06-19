@@ -23,26 +23,30 @@ Submodule `sky130_adder_4bit/` là design example tham khảo, không phải cod
 
 ## 1. FRONTEND — RTL & Mô phỏng chức năng (iverilog)
 
-Mục tiêu: kiểm tra netlist `lzc16.v` (xuất từ Xschem) hoạt động đúng so với reference model.
+Mục tiêu: kiểm tra netlist `lzc16.v` (xuất từ Xschem) chạy đúng chức năng.
+
+> **Lưu ý**: testbench thuộc repo là [`tb_lzc16.v`](frontend/iverilog/tb_lzc16.v) (không phải `lzc16_tb.v`). Nó sweep toàn bộ 65 536 vector đầu vào và dump VCD; **không** tự so với reference. `zlc_ref.v` là reference để dành, chưa gắn vào TB nên không cần include khi compile.
 
 ```bash
 cd frontend/iverilog
 
-# Biên dịch netlist + testbench + reference + thư viện sky130
+# (Một lần) sync netlist canonical từ xschem nếu chưa có:
+cp ../xschem/lzc16.v ./lzc16.v
+
+# Biên dịch netlist + testbench + thư viện sky130
 iverilog -g2012 -o lzc16_sim \
-    lzc16.v tb_lzc16.v zlc_ref.v \
+    lzc16.v tb_lzc16.v \
     /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v \
     /usr/local/share/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v
 
-# Chạy mô phỏng
+# Chạy mô phỏng — sweep 65 536 vector, dump lzc16.vcd
 vvp lzc16_sim
-# Mong đợi: ------ TEST PASSED: all 5007 cases match ------
 
 # Xem dạng sóng
 gtkwave lzc16.vcd &
 ```
 
-Trong GTKWave: chọn module `lzc16_tb` → kéo `A[15:0]` và `Y[4:0]` vào cửa sổ waveform → chụp ảnh lưu vào `images/waveform.png`.
+Trong GTKWave: chọn module `tb_lzc16` → kéo `A[15:0]` và `Y[4:0]` vào cửa sổ waveform → chụp ảnh lưu vào `images/waveform.png`.
 
 ---
 
@@ -61,6 +65,8 @@ Trong Xschem:
 - Menu **Netlist** → chọn mode **Verilog** → tạo `lzc16.v`.
 - Menu **Netlist** → chọn mode **SPICE** → tạo `lzc16.spice`.
 
+> **Quan trọng**: Xschem xuất port dưới dạng **bus** (`input wire [15:0] A`, `output wire [4:0] Y`). Các file SDC trong `opensta/*.tcl` và testbench [`tb_lzc16.v`](frontend/iverilog/tb_lzc16.v) đã được viết theo bus-form nên **khớp được**. Đừng sửa tay sang flat-form (`A15..A0`) vì sẽ phá STA.
+
 Sau khi xuất lại, đồng bộ netlist sang các thư mục dùng:
 
 ```bash
@@ -77,6 +83,8 @@ Chụp screenshot `lzc2.sch`, `lzc4.sch`, `lzc8.sch`, `lzc16.sch` lưu vào `ima
 
 Mục tiêu: lấy critical path, max clock, power cho bảng metrics trong report.
 
+> **Yêu cầu**: `opensta/lzc16.v` phải đồng bộ với `xschem/lzc16.v` (bước 2). Cả SDC ([`lzc16.tcl`](frontend/opensta/lzc16.tcl), [`lzc16_max.tcl`](frontend/opensta/lzc16_max.tcl), [`lzc16_1mhz.tcl`](frontend/opensta/lzc16_1mhz.tcl)) và netlist đều theo bus-form `A[15:0]`, `Y[4:0]`. Nếu OpenSTA log báo `port 'A[15]' not found` hoặc `No paths found.` → netlist trong `opensta/` đang là phiên bản flat cũ, chạy lại `cp ../xschem/lzc16.v ./lzc16.v`.
+
 ```bash
 cd ../opensta
 
@@ -91,6 +99,14 @@ sta -no_init lzc16.tcl      | tee lzc16_run1.log
 ```
 
 Ghi lại các con số: **critical path delay**, **max clock (MHz)**, **power @ 1 MHz**, **power @ max clock**. Chúng sẽ điền vào bảng metrics cuối report.
+
+Số tham chiếu hiện tại (sau khi sync netlist bus-form):
+
+| Run | Period | Slack | Total power |
+|---|---|---|---|
+| `lzc16_run1.log` | 10 ns (100 MHz) | +8.49 ns MET | 5.71 µW |
+| `lzc16_run2.log` | 1.51 ns (max) | +0.40 ns MET | 37.8 µW |
+| `lzc16_run3.log` | 1000 ns (1 MHz) | +998.49 ns MET | 0.057 µW |
 
 ---
 

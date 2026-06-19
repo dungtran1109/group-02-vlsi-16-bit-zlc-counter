@@ -11,13 +11,13 @@ link_design lzc16
 # Virtual clock 10 ns = 100 MHz
 create_clock -name clk -period 1.51
 
-# 16 scalar input ports
-set inputs [get_ports {A15 A14 A13 A12 A11 A10 A9 A8 A7 A6 A5 A4 A3 A2 A1 A0}]
+# 16 input ports (bus form, matching Xschem netlist: input wire [15:0] A)
+set inputs [get_ports {A[15] A[14] A[13] A[12] A[11] A[10] A[9] A[8] A[7] A[6] A[5] A[4] A[3] A[2] A[1] A[0]}]
 set_input_delay -max  0.0  -clock clk $inputs
 set_input_delay -min  0.0  -clock clk $inputs
 
-# 5 scalar output ports
-set outputs [get_ports {Y4 Y3 Y2 Y1 Y0}]
+# 5 output ports (bus form, matching Xschem netlist: output wire [4:0] Y)
+set outputs [get_ports {Y[4] Y[3] Y[2] Y[1] Y[0]}]
 set_output_delay -max  0.2  -clock clk $outputs
 set_output_delay -min -0.02 -clock clk $outputs
 
